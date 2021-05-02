@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "Hypermode",
+  "version": "0.1.0",
+  "description": "Hypermode enhances the web browsing experience for hardcore keyboard users",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["hypermode.js"]
+    }
+  ]
+}
