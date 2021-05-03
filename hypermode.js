@@ -9,22 +9,36 @@ styleSheet.innerText = `
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1rem;
-    height: 1rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
     color: rgb(43, 42, 51);
   }
 `;
 
+const isInViewport = (element) => {
+  const rect = element.getBoundingClientRect();
+
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+};
+
 const insertAnchorMarkers = () => {
   document.head.appendChild(styleSheet);
 
   document.body.querySelectorAll('a').forEach((anchor) => {
-    marker = document.createElement('div');
-    marker.className = 'hypermodeMarker';
-    marker.innerText = 'a';
+    if (isInViewport(anchor)) {
+      marker = document.createElement('div');
+      marker.className = 'hypermodeMarker';
+      marker.innerText = 'a';
 
-    anchor.insertBefore(marker, anchor.firstChild);
+      anchor.insertBefore(marker, anchor.firstChild);
+    }
   });
 };
 
